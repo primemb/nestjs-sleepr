@@ -10,7 +10,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   async create(document: Omit<TDocument, '_id'>): Promise<TDocument> {
     const createdDocument = new this.model({
       ...document,
-      id: new Types.ObjectId(),
+      _id: new Types.ObjectId(),
     });
     return (await createdDocument.save()).toJSON() as unknown as TDocument;
   }
